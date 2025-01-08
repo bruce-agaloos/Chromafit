@@ -6,7 +6,7 @@ const images = [
     "images/hot.jpg",
     "images/camera.jpg",
     "images/cute.jpg",
-    "images/yellow.jpg", // Add more image URLs here
+    "images/yellow2.jpg", // Add more image URLs here
 ];
 
 const productNames = [
@@ -24,7 +24,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
             setCurrentImageIndex(
                 (prevIndex) => (prevIndex + 1) % images.length
             );
-        }, 3000); // Change image every 10 seconds
+        }, 15000); // Change image every 10 seconds
 
         return () => clearInterval(interval);
     }, []);
@@ -39,11 +39,10 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                     {" "}
                     free local shipping on all orders WORTH PHP 2500 purchase.
                 </div>
-                <div
-                    className="relative w-full overflow-hidden"
-                    style={{ height: "33.4rem" }}
+                              <div
+                    className="relative w-full overflow-hidden sm:h-[61rem] lg:h-[33.4rem]" // Adjust the height for mobile view
                 >
-                                        {images.map((image, index) => (
+                    {images.map((image, index) => (
                         <div key={index} className="absolute w-full h-full">
                             <img
                                 className={`absolute top-0 left-0 w-full h-full object-cover transition-all duration-1000 ease-out ${
@@ -54,28 +53,69 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                 src={image}
                                 alt={`image-${index}`}
                             />
-                            <div
-                                className={`absolute bottom-20 left-20 text-left transition-opacity duration-1000 ${
+                             <div
+                                className={`absolute hidden lg:block lg:bottom-20 lg:left-20 lg:text-left transition-opacity duration-1000 ${
                                     index === currentImageIndex
                                         ? "opacity-100"
                                         : "opacity-0"
                                 }`}
                                 style={{
-                                    zIndex: index === currentImageIndex ? 10 : 0,
+                                    zIndex:
+                                        index === currentImageIndex ? 10 : 0,
                                 }}
                             >
                                 <h2
                                     className={`text-4xl font-bold text-white mb-4 drop-shadow-lg ${
-                                        index === currentImageIndex ? "animate-fadeInUp" : "animate-fadeOutDown"
+                                        index === currentImageIndex
+                                            ? "animate-fadeInUp"
+                                            : "animate-fadeOutDown"
                                     }`}
                                 >
                                     {productNames[index]}
                                 </h2>
                                 <button
                                     className={`bg-black text-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors duration-300 ${
-                                        index === currentImageIndex ? "animate-buttonInUp" : "animate-buttonOutDown"
+                                        index === currentImageIndex
+                                            ? "animate-buttonInUp"
+                                            : "animate-buttonOutDown"
                                     }`}
-                                    onClick={() => console.log(productNames[index])}
+                                    onClick={() =>
+                                        console.log(productNames[index])
+                                    }
+                                    style={{ zIndex: 20 }}
+                                >
+                                    Buy Now
+                                </button>
+                            </div>
+                            <div
+                                className={`lg:hidden absolute flex flex-col w-full h-full mt-40 justify-center items-center transition-opacity duration-1000 ${
+                                    index === currentImageIndex
+                                        ? "opacity-100"
+                                        : "opacity-0"
+                                }`}
+                                style={{
+                                    zIndex:
+                                        index === currentImageIndex ? 10 : 0,
+                                }}
+                            >
+                                <h2
+                                    className={`text-4xl font-bold text-white mb-4 drop-shadow-lg ${
+                                        index === currentImageIndex
+                                            ? "animate-fadeInUp"
+                                            : "animate-fadeOutDown"
+                                    }`}
+                                >
+                                    {productNames[index]}
+                                </h2>
+                                <button
+                                    className={`bg-black text-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors duration-300 ${
+                                        index === currentImageIndex
+                                            ? "animate-buttonInUp"
+                                            : "animate-buttonOutDown"
+                                    }`}
+                                    onClick={() =>
+                                        console.log(productNames[index])
+                                    }
                                     style={{ zIndex: 20 }}
                                 >
                                     Buy Now
