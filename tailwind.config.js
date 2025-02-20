@@ -9,6 +9,10 @@ export default {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.jsx',
     ],
+    safelist: [
+        'text-shadow-outline',
+        'text-shadow-none',
+    ],
 
     theme: {
         extend: {
@@ -49,8 +53,8 @@ export default {
                 upDown: 'upDown 2s ease-in-out infinite',
             },
             boxShadow: {
-                glow: '0 0 10px rgba(255, 255, 255, 0.8)',
-                glowBrighter: '0 0 20px rgba(255, 255, 255, 1)',
+                glow: '0 0 10px rgba(0, 0, 0, 0.8)',
+                glowBrighter: '0 0 20px rgba(0, 0, 0, 1)',
               },
         },
     },

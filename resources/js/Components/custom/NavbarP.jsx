@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "@inertiajs/react";
 
-const Navbar = ({ auth }) => {
+const NavbarP = ({ auth }) => {
     const [scrollY, setScrollY] = useState(0);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY);
@@ -17,14 +16,7 @@ const Navbar = ({ auth }) => {
         };
     }, []);
 
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    };
-
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
-
+   
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
@@ -38,22 +30,13 @@ const Navbar = ({ auth }) => {
     return (
         <>
             <header
-                className={`fixed left-0 w-full lg-shadow z-10 transition-colors duration-300 group hover:bg-white ${
-                    scrollY > 10
-                        ? "bg-white text-black drop-shadow-xl "
-                        : "bg-transparent text-black"
-                }`}
+                className="fixed left-0 w-full lg-shadow z-10 transition-colors duration-300 group 
+                        bg-white text-black drop-shadow-xl "
                 style={{ top: `${topValue}rem`, height: "8.3rem" }}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
             >
-                <div className="grid grid-cols-3 items-center gap-2 py-10 lg:grid-cols-3  group-hover:text-black">
+                <div className="grid grid-cols-3 items-center gap-2 py-10 lg:grid-cols-3">
                     <button
-                        className={`lg:hidden ml-7 w-10 ${
-                            scrollY > 10
-                                ? "text-black"
-                                : "text-white group-hover:text-black"
-                        }`}
+                        className="lg:hidden ml-7 w-10 text-black"
                         onClick={toggleSidebar}
                     >
                         <svg
@@ -72,7 +55,7 @@ const Navbar = ({ auth }) => {
                         </svg>
                     </button>
 
-                    <div className="hidden lg:flex text-5xl font-londrina lg:col-start-2 justify-center -mt-5 group-hover:text-black">
+                    <div className="hidden lg:flex text-5xl font-londrina lg:col-start-2 justify-center -mt-5">
                         Chromafit
                     </div>
 
@@ -80,75 +63,48 @@ const Navbar = ({ auth }) => {
                         Chromafit
                     </div>
 
-                
-                        <button
-                            className={`absolute mr-8 right-0 lg:hidden justify-end ${
-                                scrollY > 10
-                                    ? "text-black"
-                                    : "text-white group-hover:text-black"
-                            }`}
-                            onClick={toggleCart}
+                    <button
+                        className={
+                            "absolute mr-8 right-0 lg:hidden justify-end text-black"
+                        }
+                        onClick={toggleCart}
+                    >
+                        <svg
+                            className="w-8 h-8"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
                         >
-                                                       <svg
-                                className="w-8 h-8"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.6 8M17 13l1.6 8M9 21h6"
-                                ></path>
-                            </svg>
-                        </button>
-                    
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.6 8M17 13l1.6 8M9 21h6"
+                            ></path>
+                        </svg>
+                    </button>
 
-                    <nav className="hidden lg:flex -mx-3 -mt-2 flex-1 justify-end mr-10 font-montserrat text-xs lg:col-start-3 group-hover:text-black">
+                    <nav className="hidden lg:flex -mx-3 -mt-2 flex-1 justify-end mr-10 font-montserrat text-xs lg:col-start-3">
                         {auth.user ? (
                             <Link
                                 href={route("profile")}
-                                className={`rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
-                                    scrollY > 10
-                                        ? "text-slate-500"
-                                        : `text-white ${
-                                              isHovered
-                                                  ? "text-shadow-none"
-                                                  : "text-shadow-outline"
-                                          } group-hover:text-slate-500`
-                                }`}
+                                className="rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] text-slate-500"
                             >
                                 ACCOUNT
                             </Link>
                         ) : (
                             <Link
                                 href={route("login")}
-                                className={`rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
-                                    scrollY > 10
-                                        ? "text-slate-500"
-                                        : `text-white ${
-                                              isHovered
-                                                  ? "text-shadow-none"
-                                                  : "text-shadow-outline"
-                                          } group-hover:text-slate-500`
-                                }`}
+                                className="rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                             >
                                 ACCOUNT
                             </Link>
                         )}
                         <Link
                             href="#"
-                            className={`rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
-                                scrollY > 10
-                                    ? "text-slate-500"
-                                    : `text-white ${
-                                          isHovered
-                                              ? "text-shadow-none"
-                                              : "text-shadow-outline"
-                                      } group-hover:text-slate-500`
-                            }`}
+                            className="rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
+                                "
                         >
                             SEARCH
                         </Link>
@@ -158,15 +114,9 @@ const Navbar = ({ auth }) => {
                                 e.preventDefault();
                                 toggleCart();
                             }}
-                            className={`rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
+                            className="rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
                                 scrollY > 10
-                                    ? "text-slate-500"
-                                    : `text-white ${
-                                          isHovered
-                                              ? "text-shadow-none"
-                                              : "text-shadow-outline"
-                                      } group-hover:text-slate-500`
-                            }`}
+                                   "
                         >
                             CART (0)
                         </Link>
@@ -175,71 +125,36 @@ const Navbar = ({ auth }) => {
                 <nav className="hidden lg:flex justify-center items-center font-montserrat text-sm -mt-5 group-hover:text-black">
                     <Link
                         href="#"
-                        className={`group rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
-                            scrollY > 10
-                                ? "text-black"
-                                : `text-white ${
-                                      isHovered
-                                          ? "text-shadow-none"
-                                          : "text-shadow-outline"
-                                  }  group-hover:text-black`
-                        }`}
+                        className="group rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
+                            "
                     >
                         NEW ARRIVAL
                     </Link>
                     <Link
                         href="#"
-                        className={`rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
-                            scrollY > 10
-                                ? "text-black"
-                                : `text-white ${
-                                      isHovered
-                                          ? "text-shadow-none"
-                                          : "text-shadow-outline"
-                                  }  group-hover:text-black`
-                        }`}
+                        className="rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
+                            "
                     >
                         ALL PRODUCTS
                     </Link>
                     <Link
                         href="#"
-                        className={`rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
-                            scrollY > 10
-                                ? "text-black"
-                                : `text-white ${
-                                      isHovered
-                                          ? "text-shadow-none"
-                                          : "text-shadow-outline"
-                                  }  group-hover:text-black`
-                        }`}
+                        className="rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
+                            "
                     >
                         COLLABORATIONS
                     </Link>
                     <Link
                         href="#"
-                        className={`rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
-                            scrollY > 10
-                                ? "text-black"
-                                : `text-white ${
-                                      isHovered
-                                          ? "text-shadow-none"
-                                          : "text-shadow-outline"
-                                  }  group-hover:text-black`
-                        }`}
+                        className="rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
+                            "
                     >
                         MEN
                     </Link>
                     <Link
                         href="#"
-                        className={`rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
-                            scrollY > 10
-                                ? "text-black"
-                                : `text-white ${
-                                      isHovered
-                                          ? "text-shadow-none"
-                                          : "text-shadow-outline"
-                                  }  group-hover:text-black`
-                        }`}
+                        className="rounded-md px-3 py-2 ring-1 ring-transparent transition hover:!text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] ${
+                            "
                     >
                         WOMEN
                     </Link>
@@ -330,7 +245,6 @@ const Navbar = ({ auth }) => {
                 className={`fixed inset-y-0 right-0 sm:w-[30rem] lg:w-[30%] shadow-black shadow-xl bg-stone-100 z-50 transform transition-transform duration-300 ${
                     cartOpen ? "-translate-x-0" : "translate-x-full"
                 }`}
-               
             >
                 <div className="p-8 py-7 flex justify-between border-b border-gray-300 shadow-sm">
                     <div className="font-montserrat text-base tracking-tight font-medium">
@@ -359,4 +273,4 @@ const Navbar = ({ auth }) => {
     );
 };
 
-export default Navbar;
+export default NavbarP;
